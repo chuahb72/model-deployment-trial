@@ -20,7 +20,7 @@ jobs:
     - name: Build EXE
       # This command tells PyInstaller to grab the .pkl file and put it inside the EXE
       # The ';' separator is specific to Windows builds
-      run: pyinstaller --onefile --add-data "house_model.pkl;." main.py
+      run: pyinstaller --collect-submodules scikitlearn --onefile --add-data "house_model.pkl;." main.py
 
     - name: Upload EXE
       uses: actions/upload-artifact@v4
