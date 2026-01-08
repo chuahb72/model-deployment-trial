@@ -1,9 +1,20 @@
 import joblib
 import numpy as np
+import os
+import sys
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 def run_app():
-    # Load the frozen model
-    model = joblib.load('house_model.pkl')
+    # Use the helper function to find the model file
+    model_path = resource_path("house_model.pkl")
+    model = joblib.load(model_path)
     
     print("--- House Price Predictor ---")
     try:
